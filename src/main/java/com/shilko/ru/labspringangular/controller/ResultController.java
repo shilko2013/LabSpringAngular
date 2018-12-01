@@ -21,7 +21,7 @@ public class ResultController {
         return ResponseEntity.ok(new Gson().toJson(resultService.getAllResults()));
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public
     @ResponseBody
     ResponseEntity addResult(@RequestParam("x") double x,
