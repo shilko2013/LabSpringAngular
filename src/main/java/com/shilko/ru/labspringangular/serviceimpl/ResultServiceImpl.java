@@ -20,14 +20,12 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public boolean addResult(double x, double y, double r) {
-        try {
-            boolean checking = false; //TODO add checking
-            Result result = new Result(x, y, r, checking, httpSession.getId());
-            resultCrudRepository.save(result);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        boolean checking = (x < r && x > 0 && y < 0 && y > -r / 2) ||
+                (x <= 0 && y <= 0 && y >= -x - r / 2) ||
+                (x < 0 && y > 0 && y * y + x * x < r * r);
+        Result result = new Result(x, y, r, checking, httpSession.getId());
+        resultCrudRepository.save(result);
+        return checking;
     }
 
     @Override

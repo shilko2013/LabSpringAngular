@@ -27,10 +27,7 @@ public class ResultController {
     ResponseEntity addResult(@RequestParam("x") double x,
                              @RequestParam("y") double y,
                              @RequestParam("r") double r) {
-        if (resultService.addResult(x, y, r))
-            return ResponseEntity.ok(new Gson().toJson(resultService.getAllResults()));
-        else
-            return ResponseEntity.badRequest().body("Illegal set of arguments");
+        return ResponseEntity.ok("{\"checking\": \"" + resultService.addResult(x, y, r) + "\"}");
     }
 
     @RequestMapping(value = "/disablesession", method = RequestMethod.GET)
