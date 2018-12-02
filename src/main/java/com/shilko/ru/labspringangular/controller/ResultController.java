@@ -3,7 +3,6 @@ package com.shilko.ru.labspringangular.controller;
 import com.google.gson.Gson;
 import com.shilko.ru.labspringangular.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
