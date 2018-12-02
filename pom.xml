@@ -112,6 +112,13 @@
             <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/oracle-ojdbc6-11.2.0.3.jar</systemPath>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
