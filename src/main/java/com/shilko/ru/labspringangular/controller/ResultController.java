@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.shilko.ru.labspringangular.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +25,14 @@ public class ResultController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public
     @ResponseBody
-    ResponseEntity addResult(@RequestParam("x") double x,
-                             @RequestParam("y") double y,
-                             @RequestParam("r") double r) {
-        return ResponseEntity.ok("{\"checking\": \"" + resultService.addResult(x, y, r) + "\"}");
+    ResponseEntity addResult(@RequestParam("x") String strX,
+                             @RequestParam("y") String strY,
+                             @RequestParam("r") String strR) {
+        Pair<Boolean, Boolean> result = resultService.addResult(strX, strY, strR);
+        if (result.getFirst())
+            return ResponseEntity.ok("{\"checking\": \"" + result.getSecond() + "\"}");
+        else
+            return ResponseEntity.badRequest().body("Illegal set of arguments");
     }
 
     @RequestMapping(value = "/disablesession", method = RequestMethod.GET)

@@ -8,4 +8,6 @@ import java.util.List;
 public interface ResultCrudRepository extends CrudRepository<Result, Long> {
 
     List<Result> findAllBySessionID(String sessionID);
+
+    void deleteAllBySessionID(String sessionID);
 }

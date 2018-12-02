@@ -1,12 +1,13 @@
 package com.shilko.ru.labspringangular.service;
 
 import com.shilko.ru.labspringangular.model.Result;
+import org.springframework.data.util.Pair;
 
 import java.util.List;
 
 public interface ResultService {
 
-    boolean addResult(double x, double y, double r);
+    Pair<Boolean, Boolean> addResult(String strX, String strY, String strR);
 
     List<Result> getAllResults();
 
