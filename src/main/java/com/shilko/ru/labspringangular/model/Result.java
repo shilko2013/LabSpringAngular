@@ -1,6 +1,7 @@
 package com.shilko.ru.labspringangular.model;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -9,8 +10,9 @@ import javax.persistence.*;
 public class Result {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "guid")
+    private String id;
 
     @Column(nullable = false)
     private double x;
@@ -37,11 +39,11 @@ public class Result {
         this.sessionID = sessionID;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -9,16 +9,16 @@
 
     <jpa:repositories base-package="com.shilko.ru.labspringangular.repository"/>
 
-    <bean id="oracleDataSource"
+    <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <!--<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
         <property name="url" value="jdbc:oracle:thin:@helios:1521:orbis" />
         <property name="username" value="s243853" />
-        <property name="password" value="iaq150" />-->
-        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="password" value="iaq150" />
+        <!--<property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://pg:5432/studs" />
         <property name="username" value="s243853" />
-        <property name="password" value="iaq150" />
+        <property name="password" value="iaq150" />-->
 
         <property name="connectionProperties">
             <props>
@@ -29,7 +29,7 @@
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="oracleDataSource" />
+        <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan" value="com.shilko.ru.labspringangular.model" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
@@ -37,8 +37,8 @@
 
         <property name="jpaProperties">
             <props>
-                <!--<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>-->
-                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</prop>-->
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>

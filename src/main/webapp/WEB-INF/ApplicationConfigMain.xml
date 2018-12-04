@@ -10,6 +10,7 @@
 
     <import resource="ApplicationConfigMVC.xml"/>
 
+    <import resource="ApplicationConfigSecurity.xml"/>
     <!--<context:property-placeholder location="classpath:database.properties"/>-->
 
 </beans>
