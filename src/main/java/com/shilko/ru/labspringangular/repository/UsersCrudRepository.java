@@ -1,6 +1,5 @@
 package com.shilko.ru.labspringangular.repository;
 
-import com.shilko.ru.labspringangular.model.UserStatusEnum;
 import com.shilko.ru.labspringangular.model.Users;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -33,12 +32,4 @@ public interface UsersCrudRepository extends CrudRepository<Users, Long> {
 
     @Override
     List<Users> findAll();
-
-    /**
-     * Find all by user status list.
-     *
-     * @param userStatus the user status
-     * @return the list
-     */
-    List<Users> findAllByUserStatus(UserStatusEnum userStatus);
 }

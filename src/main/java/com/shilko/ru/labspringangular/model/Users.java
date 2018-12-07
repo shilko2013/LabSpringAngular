@@ -49,17 +49,6 @@ public class Users implements Serializable {
     @Size(min = minPasswordSize)
     private String password;
 
-    @Column(nullable = false)
-    private UserStatusEnum userStatus;
-
-    public UserStatusEnum getUserStatus() {
-        return userStatus;
-    }
-
-    public void setUserStatus(UserStatusEnum userStatus) {
-        this.userStatus = userStatus;
-    }
-
     /**
      * Gets min password size.
      *
@@ -117,7 +106,7 @@ public class Users implements Serializable {
         if (getClass() != o.getClass())
             return false;
         Users users = (Users) o;
-        return id == users.id;
+        return id.equals(users.id);
     }
 
     @Override

@@ -9,8 +9,8 @@
     <import resource="ApplicationConfigDatabase.xml"/>
 
     <import resource="ApplicationConfigMVC.xml"/>
-
-    <import resource="ApplicationConfigSecurity.xml"/>
     <!--<context:property-placeholder location="classpath:database.properties"/>-->
+
+    <bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 </beans>

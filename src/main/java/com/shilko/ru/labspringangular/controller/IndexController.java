@@ -11,22 +11,4 @@ public class IndexController {
     public String index() {
         return "index";
     }
-
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration() {
-        return "registration";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
-        if (error != null) {
-            model.addAttribute("error", "Username or password is incorrect.");
-        }
-
-        if (logout != null) {
-            model.addAttribute("message", "Logged out successfully.");
-        }
-
-        return "login";
-    }
 }

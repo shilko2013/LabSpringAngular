@@ -1,7 +1,6 @@
 package com.shilko.ru.labspringangular.controller;
 
 import com.shilko.ru.labspringangular.model.Users;
-import com.shilko.ru.labspringangular.service.SecurityService;
 import com.shilko.ru.labspringangular.service.UserService;
 import com.shilko.ru.labspringangular.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class RegistrationController {
+public class LoginController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private SecurityService securityService;
-
     @Autowired
     private UserValidator userValidator;
 
@@ -34,8 +29,17 @@ public class RegistrationController {
 
         userService.save(user);
 
-        //securityService.autoLogin(user.getUsername(), user.getPassword());
-
         return ResponseEntity.ok("Registration success");
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    ResponseEntity login(@RequestParam("username") String username,
+                        @RequestParam("password") String password) {
+        if (!userService.exist(username,password))
+            return ResponseEntity.badRequest().body("Authentication failed");
+        else
+            return ResponseEntity.ok("Authentication success");
     }
 }
