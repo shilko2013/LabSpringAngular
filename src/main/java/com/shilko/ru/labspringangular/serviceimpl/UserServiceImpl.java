@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean exist(String username, String password) {
         Optional<Users> user = usersCrudRepository.findByUsername(username);
-        return user.map(users -> users.getPassword().equals(bCryptPasswordEncoder.encode(password))).orElse(false);
+        return user.map(users -> bCryptPasswordEncoder.matches(password,user.get().getPassword())).orElse(false);
     }
 
     @Override

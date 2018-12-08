@@ -10,9 +10,8 @@ import javax.persistence.*;
 public class Result {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "guid")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private double x;
@@ -39,11 +38,11 @@ public class Result {
         this.sessionID = sessionID;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

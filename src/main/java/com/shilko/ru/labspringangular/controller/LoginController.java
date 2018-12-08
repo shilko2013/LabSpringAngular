@@ -4,9 +4,11 @@ import com.shilko.ru.labspringangular.model.Users;
 import com.shilko.ru.labspringangular.service.UserService;
 import com.shilko.ru.labspringangular.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 public class LoginController {
 

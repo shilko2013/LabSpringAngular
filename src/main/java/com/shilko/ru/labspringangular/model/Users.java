@@ -16,6 +16,7 @@ import java.util.Objects;
  */
 @Entity
 @Data
+@Table(name = "USER_LAB")
 public class Users implements Serializable {
 
     /**
@@ -38,8 +39,7 @@ public class Users implements Serializable {
     private static final int minPasswordSize = 6;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "guid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @Column(unique=true, nullable = false)
