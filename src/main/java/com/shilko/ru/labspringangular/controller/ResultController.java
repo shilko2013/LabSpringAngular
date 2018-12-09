@@ -18,8 +18,8 @@ public class ResultController {
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public
     @ResponseBody
-    ResponseEntity getAllResults() {
-        return ResponseEntity.ok(new Gson().toJson(resultService.getAllResults()));
+    ResponseEntity getAllResults(@RequestParam("sessionID") String sessionID) {
+        return ResponseEntity.ok(new Gson().toJson(resultService.getAllResults(sessionID)));
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -27,8 +27,9 @@ public class ResultController {
     @ResponseBody
     ResponseEntity addResult(@RequestParam("x") String strX,
                              @RequestParam("y") String strY,
-                             @RequestParam("r") String strR) {
-        Pair<Boolean, Boolean> result = resultService.addResult(strX, strY, strR);
+                             @RequestParam("r") String strR,
+                             @RequestParam("sessionID") String sessionID) {
+        Pair<Boolean, Boolean> result = resultService.addResult(strX, strY, strR, sessionID);
         if (result.getFirst())
             return ResponseEntity.ok("{\"checking\": \"" + result.getSecond() + "\"}");
         else
@@ -38,8 +39,8 @@ public class ResultController {
     @RequestMapping(value = "/disablesession", method = RequestMethod.GET)
     public
     @ResponseBody
-    ResponseEntity disableSession() {
-        resultService.disableSession();
+    ResponseEntity disableSession(@RequestParam("sessionID") String sessionID) {
+        resultService.disableSession(sessionID);
         return ResponseEntity.ok().body("Session was disabled");
     }
 }

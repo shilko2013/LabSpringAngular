@@ -15,15 +15,13 @@ import java.util.List;
 public class ResultServiceImpl implements ResultService {
 
     @Autowired
-    private HttpSession httpSession;
-
-    @Autowired
     private ResultCrudRepository resultCrudRepository;
 
-    private static double equalsArray[] = new double[]{-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2};
+    private static double equalsXArray[] = new double[]{-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2};
+    private static double equalsRArray[] = new double[]{0.5, 1, 1.5, 2};
 
     @Override
-    public Pair<Boolean, Boolean> addResult(String strX, String strY, String strR) {
+    public Pair<Boolean, Boolean> addResult(String strX, String strY, String strR, String sessionID) {
         double x, y, r;
         try {
             x = Double.parseDouble(strX);
@@ -32,26 +30,28 @@ public class ResultServiceImpl implements ResultService {
         } catch (Exception e) {
             return Pair.of(false, false);
         }
-        if (Arrays.binarySearch(equalsArray, x) < 0
-                || Arrays.binarySearch(equalsArray, r) < 0
+        if (Arrays.binarySearch(equalsXArray, x) < 0
+                || Arrays.binarySearch(equalsRArray, r) < 0
                 || y < -5 || y > 3)
             return Pair.of(false, false);
         boolean checking = (x < r && x > 0 && y < 0 && y > -r / 2) ||
                 (x <= 0 && y <= 0 && y >= -x - r / 2) ||
                 (x < 0 && y > 0 && y * y + x * x < r * r);
-        Result result = new Result(x, y, r, checking, httpSession.getId());
+        Result result = new Result(x, y, r, checking, sessionID);
         resultCrudRepository.save(result);
         return Pair.of(true, checking);
     }
 
     @Override
-    public List<Result> getAllResults() {
-        return resultCrudRepository.findAllBySessionID(httpSession.getId());
+    public List<Result> getAllResults(String sessionID) {
+        List<Result> results = resultCrudRepository.findAllBySessionID(sessionID);
+        results.forEach(e -> e.setId(null));
+        results.forEach(e -> e.setSessionID(null));
+        return results;
     }
 
     @Override
-    public void disableSession() {
-        httpSession.invalidate();
-        resultCrudRepository.deleteAllBySessionID(httpSession.getId());
+    public void disableSession(String sessionID) {
+        resultCrudRepository.deleteAllBySessionID(sessionID);
     }
 }

@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface ResultService {
 
-    Pair<Boolean, Boolean> addResult(String strX, String strY, String strR);
+    Pair<Boolean, Boolean> addResult(String strX, String strY, String strR, String sessionID);
 
-    List<Result> getAllResults();
+    List<Result> getAllResults(String sessionID);
 
-    void disableSession();
+    void disableSession(String sessionID);
 }
